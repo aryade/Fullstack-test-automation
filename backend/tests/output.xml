@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.12.1 on darwin)" generated="2025-07-24T12:34:17.932951" rpa="false" schemaversion="5">
+<suite id="s1" name="Todo Api Tests" source="/Users/ganesh/hobbies/todo_app/backend/tests/todo_api_tests.robot">
+<test id="s1-t1" name="Create Session" line="10">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-07-24T12:34:18.074674" level="INFO">Creating Session using : alias=todo_api, url=http://localhost:4000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>${SESSION}</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-07-24T12:34:18.074379" elapsed="0.000519"/>
+</kw>
+<status status="PASS" start="2025-07-24T12:34:18.072169" elapsed="0.002968"/>
+</test>
+<test id="s1-t2" name="Create Todo Item" line="13">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-07-24T12:34:18.076079" level="WARN">You might have an = symbol in url. You better place 'url=' before, example: 'url=/your-url/foo?param=a' or use '/your-url/foo  params=param=a' or escape it</msg>
+<msg time="2025-07-24T12:34:18.076317" level="FAIL">TypeError: RequestsOnSessionKeywords.post_on_session() missing 1 required positional argument: 'url'</msg>
+<var>${response}</var>
+<arg>${SESSION}</arg>
+<arg>BASE_URL={"title": "Robot Todo"}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-07-24T12:34:18.075902" elapsed="0.000925">TypeError: RequestsOnSessionKeywords.post_on_session() missing 1 required positional argument: 'url'</status>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" start="2025-07-24T12:34:18.077050" elapsed="0.000029"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<var>${todo_id}</var>
+<arg>${response.json()["id"]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2025-07-24T12:34:18.077234" elapsed="0.000025"/>
+</kw>
+<status status="FAIL" start="2025-07-24T12:34:18.075519" elapsed="0.001944">TypeError: RequestsOnSessionKeywords.post_on_session() missing 1 required positional argument: 'url'</status>
+</test>
+<test id="s1-t3" name="Get All Todos" line="18">
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-07-24T12:34:18.078158" level="WARN">You might have an = symbol in url. You better place 'url=' before, example: 'url=/your-url/foo?param=a' or use '/your-url/foo  params=param=a' or escape it</msg>
+<msg time="2025-07-24T12:34:18.078350" level="FAIL">TypeError: RequestsOnSessionKeywords.get_on_session() missing 1 required positional argument: 'url'</msg>
+<var>${response}</var>
+<arg>${SESSION}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-07-24T12:34:18.078020" elapsed="0.000568">TypeError: RequestsOnSessionKeywords.get_on_session() missing 1 required positional argument: 'url'</status>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" start="2025-07-24T12:34:18.078760" elapsed="0.000026"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response.text}</arg>
+<arg>Robot Todo</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" start="2025-07-24T12:34:18.078935" elapsed="0.000023"/>
+</kw>
+<status status="FAIL" start="2025-07-24T12:34:18.077728" elapsed="0.001417">TypeError: RequestsOnSessionKeywords.get_on_session() missing 1 required positional argument: 'url'</status>
+</test>
+<test id="s1-t4" name="Update Todo Item" line="23">
+<kw name="PUT On Session" owner="RequestsLibrary">
+<msg time="2025-07-24T12:34:18.080318" level="FAIL">Variable '${todo_id}' not found.</msg>
+<var>${response}</var>
+<arg>${SESSION}</arg>
+<arg>${todo_id}</arg>
+<arg>json={"title": "Updated Robot Todo"}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-07-24T12:34:18.079692" elapsed="0.000677">Variable '${todo_id}' not found.</status>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" start="2025-07-24T12:34:18.080568" elapsed="0.000030"/>
+</kw>
+<status status="FAIL" start="2025-07-24T12:34:18.079400" elapsed="0.001380">Variable '${todo_id}' not found.</status>
+</test>
+<test id="s1-t5" name="Delete Todo Item" line="27">
+<kw name="DELETE On Session" owner="RequestsLibrary">
+<msg time="2025-07-24T12:34:18.082357" level="FAIL">Variable '${todo_id}' not found.</msg>
+<var>${response}</var>
+<arg>${SESSION}</arg>
+<arg>${todo_id}</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-07-24T12:34:18.081298" elapsed="0.001351">Variable '${todo_id}' not found.</status>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>204</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" start="2025-07-24T12:34:18.083745" elapsed="0.000195"/>
+</kw>
+<status status="FAIL" start="2025-07-24T12:34:18.080977" elapsed="0.003621">Variable '${todo_id}' not found.</status>
+</test>
+<status status="FAIL" start="2025-07-24T12:34:17.936048" elapsed="0.149060"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="4" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Todo Api Tests" id="s1" pass="1" fail="4" skip="0">Todo Api Tests</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-07-24T12:34:18.071482" level="ERROR">Error in file '/Users/ganesh/hobbies/todo_app/backend/tests/todo_api_tests.robot' on line 7: Setting variable '${todo_id}' failed: Resolving variable '${response.json()["id"]}' failed: Variable '${response}' not found.</msg>
+<msg time="2025-07-24T12:34:18.076079" level="WARN">You might have an = symbol in url. You better place 'url=' before, example: 'url=/your-url/foo?param=a' or use '/your-url/foo  params=param=a' or escape it</msg>
+<msg time="2025-07-24T12:34:18.078158" level="WARN">You might have an = symbol in url. You better place 'url=' before, example: 'url=/your-url/foo?param=a' or use '/your-url/foo  params=param=a' or escape it</msg>
+</errors>
+</robot>
