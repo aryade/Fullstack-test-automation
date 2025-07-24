@@ -11,6 +11,9 @@ Includes automated API and UI tests.
 - Automated API tests (Jest + Supertest)
 - Automated UI tests (Playwright)
 - Manual API test collection (Postman)
+- Integrated test scripts into a GitHub Actions/CI pipeline.
+- Added code coverage reporting.
+- Added visual test snapshots (for UI)
 
 ## Getting Started
 
